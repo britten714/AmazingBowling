@@ -18,7 +18,7 @@ public class Box : MonoBehaviour
             AudioSource explosionAudio = instance.GetComponent<AudioSource>();
             explosionAudio.Play();
 
-            Destroy(instance.gameObject, instance.duration);
+            Destroy(instance.gameObject, instance.main.duration);
             gameObject.SetActive(false);
         }
     }

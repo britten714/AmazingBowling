@@ -33,11 +33,11 @@ public class Ball : MonoBehaviour
 
         }
 
-        explosionParticle.transform.parent = null;
+        explosionParticle.transform.parent = null;      //이런 문제를 해결할 때 쓸 수 있는 좋은 방법인듯. 
         explosionParticle.Play();
         explosionAudio.Play();
         Destroy(gameObject);
-        Destroy(explosionParticle.gameObject, explosionParticle.duration);
+        Destroy(explosionParticle.gameObject, explosionParticle.main.duration);
     }
 
     private float CalculateDamage(Vector3 targetPosition)
