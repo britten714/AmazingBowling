@@ -2,27 +2,57 @@
 
 public class Ball : MonoBehaviour
 {
+    public LayerMask whatIsBox;
 
-    private ParticleSystem explosionParticle;
-    private AudioSource explosionAudio;
-    private float maxDamage = 100f;
-    private float explosionForce = 100f;
+
+    public ParticleSystem explosionParticle;                //how to if private?
+    public AudioSource explosionAudio;
+    [SerializeField] private float maxDamage = 100f;
+    [SerializeField] private float explosionForce = 100f;
     private float lifeTIme = 10f;
-    private float explosionRadius = 20f;
+    [SerializeField] private float explosionRadius = 20f;
 
     void Start()
-    {
-        explosionParticle = GetComponentInChildren<ParticleSystem>();
-        explosionAudio = GetComponentInChildren<AudioSource>();
+    {       
         Destroy(gameObject, lifeTIme);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, whatIsBox);
+
+        foreach (var collider in colliders)
+        {
+            Rigidbody targetRigidbody = collider.GetComponent<Rigidbody>();
+            targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+
+            Box targetBox = collider.GetComponent<Box>();
+            float damage = CalculateDamage(collider.transform.position);
+            targetBox.TakeDamage(damage);
+
+
+        }
+
         explosionParticle.transform.parent = null;
         explosionParticle.Play();
         explosionAudio.Play();
         Destroy(gameObject);
         Destroy(explosionParticle.gameObject, explosionParticle.duration);
+    }
+
+    private float CalculateDamage(Vector3 targetPosition)
+    {
+        Vector3 explosionToTarget = targetPosition - transform.position;
+        float distance = explosionToTarget.magnitude;
+        float edgeToCenterDistance = explosionRadius - distance;
+        float percentage = edgeToCenterDistance / explosionRadius;
+        float damage = maxDamage * percentage;
+        damage = Mathf.Max(0, damage);
+        return damage;
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
