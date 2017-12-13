@@ -5,7 +5,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     [SerializeField] private int score = 5;
-    public ParticleSystem explosionParticle;
+    public ParticleSystem explosionParticle;    //만약 이게 private이면 어떻게 가져오지? public이니까 손쉽게 에디터 상에서 드래그앤드롭해서 가져왔지만. [SerializeField]하면 되나?
     [SerializeField] private float hp = 10f;
 
     public void TakeDamage(float damage)
