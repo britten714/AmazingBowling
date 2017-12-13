@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2935c080f175b1244ba7ad807c19fe5c
+timeCreated: 1513160917
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Extra Mile - Demo
+  fontNames:
+  - Extra Mile - Demo
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

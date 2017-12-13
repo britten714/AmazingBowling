@@ -36,6 +36,9 @@ public class Ball : MonoBehaviour
         explosionParticle.transform.parent = null;      //이런 문제를 해결할 때 쓸 수 있는 좋은 방법인듯. 
         explosionParticle.Play();
         explosionAudio.Play();
+
+        GameManager.instance.OnBallDestroy();
+
         Destroy(gameObject);
         Destroy(explosionParticle.gameObject, explosionParticle.main.duration);
     }
@@ -49,10 +52,5 @@ public class Ball : MonoBehaviour
         float damage = maxDamage * percentage;
         damage = Mathf.Max(0, damage);
         return damage;
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

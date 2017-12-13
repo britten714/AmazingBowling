@@ -55,7 +55,7 @@ public class CamFollow : MonoBehaviour {
 
         Vector3 smoothPosition = Vector3.SmoothDamp(transform.position, targetPosition, ref lastMovingVelocity, smoothTime);     //ref의 의미는 변수가 함수 내부에 들어갔을 때 변경된 값을 그대로 챙겨서 나온다는 것. 
 
-        //transform.position = targetPosition;          이렇게 하면 카메라가 타겟에 딱 붙는다. 
+        transform.position = targetPosition;          //위에줄 코드 안 쓰고 이렇게 하면 카메라가 타겟에 딱 붙는다. 
 
     }
 
